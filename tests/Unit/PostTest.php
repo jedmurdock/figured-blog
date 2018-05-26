@@ -8,14 +8,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PostTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     /**
      * Test creation of a Post - slug generation is the only fancy bit
      *
      * @return void
      */
-    public function testPostBasic()
+    public function testPostModelCreate()
     {
         $post = factory(\App\Post::class)->create();
 

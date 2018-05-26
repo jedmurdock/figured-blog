@@ -19,4 +19,8 @@ class Post extends Model
     {
         return 'slug';
     }
+
+    protected $fillable = [
+        'visible_at', 'title', 'body',
+    ];
 }
