@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+    <example-component></example-component>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
