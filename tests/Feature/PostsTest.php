@@ -5,8 +5,8 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
-use App\Post;
+use \FiguredBlog\User;
+use \FiguredBlog\Post;
 
 class PostsTest extends TestCase
 {
@@ -69,8 +69,6 @@ class PostsTest extends TestCase
             'visible_at' => '2018-01-01 11:20:00',
         ]);
 
-        dump($post->slug);
-
         $this->json('DELETE', '/api/posts/' . $post->slug, [], $headers)
             ->assertStatus(204);
     }
@@ -86,7 +84,7 @@ class PostsTest extends TestCase
         factory(Post::class)->create([
             'title' => 'Second Post',
             'body' => 'Second Body',
-            'visible_at' => '2018-01-01 11:20:00',
+            'visible_at' => '2018-02-01 11:21:00',
         ]);
 
         $user = factory(User::class)->create();
@@ -104,12 +102,11 @@ class PostsTest extends TestCase
                 [ 
                     'title' => 'Second Post', 
                     'body' => 'Second Body',
-                    'visible_at' => '2018-01-01 11:20:00',
+                    'visible_at' => '2018-02-01 11:21:00',
                 ]
             ])
             ->assertJsonStructure([
                 '*' => ['id', 'body', 'title', 'created_at', 'updated_at', 'visible_at', 'slug'],
             ]);
     }
-
 }

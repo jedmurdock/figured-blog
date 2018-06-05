@@ -5,6 +5,7 @@ namespace Tests\Feature\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use \FiguredBlog\User;
 
 class LoginTest extends TestCase
 {
@@ -27,7 +28,7 @@ class LoginTest extends TestCase
 
     public function testUserLogin()
     {
-        $user = factory(\App\User::class)->create([
+        $user = factory(User::class)->create([
             'email' => 'login@example.com',
             'password' => bcrypt('8675409'),
         ]);

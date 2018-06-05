@@ -4,7 +4,6 @@
 <div class="container">
     <div class="row justify-content-center">
         <post-stream></post-stream>
-        
     </div>
 </div>
 @endsection

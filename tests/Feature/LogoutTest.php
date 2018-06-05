@@ -5,26 +5,27 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use \FiguredBlog\User;
 
 class LogoutTest extends TestCase
 {
     public function testLogout()
     {
-        $user = factory(\App\User::class)->create(['email' => 'testy@example.com']);
+        $user = factory(User::class)->create(['email' => 'testy@example.com']);
         $token = $user->makeApiToken();
         $headers = ['Authorization' => "Bearer $token"];
 
         $this->json('get', '/api/posts', [], $headers)->assertStatus(200);
         $this->json('post', '/api/logout', [], $headers)->assertStatus(200);
 
-        $user = \App\User::find($user->id);
+        $user = User::find($user->id);
 
         $this->assertEquals(null, $user->api_token);
     }
 
     public function testNullToken()
     {
-        $user = factory(\App\User::class)->create(['email' => 'testor@example.com']);
+        $user = factory(User::class)->create(['email' => 'testor@example.com']);
         $token = $user->makeApiToken();
         $headers = ['Authorization' => "Bearer $token"];
 
