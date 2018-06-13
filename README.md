@@ -16,10 +16,19 @@ You should be able to clone this repo and then, given you've got MySQL, php, com
 
 ```
 composer install
+
+cp .env.example .env   # edit for your local database server with an empty DB and appropriate user access for this project
+
 php artisan migrate
+
 phpunit
+
 php artisan db:seed  #optional
+
+npm install
+
 npm run dev
+
 php artisan serve
 ```
 
