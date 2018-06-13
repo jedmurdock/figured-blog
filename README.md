@@ -1,32 +1,34 @@
-## Jed Murdock's basic blog for Figured
+## Basic Blog for Figured
 
-While I have many years of experience writing PHP, this is my first Laravel app. This is also my first attempt at Vue.js. I'm sure I'm making all sorts of rookie mistakes on this project that given a month or two of best-practice guidance for these specific frameworks I could clean up. I've experience with Rails / React which is just similar enough to get me in trouble. 
+This is my first Laravel app and this is also my first attempt at Vue.js. 
 
-I designed this as an API first / javascript frontend app because that's generally how I think now. I decided to handle login/logout and registration
-as normal thanks to the built-in Laravel views, although the api routes exist and are tested.
+I'm sure I'm making all sorts of rookie mistakes on this project that given a month or two of best-practice guidance for these specific frameworks I could clean up. I have some professional experience with a Rails / React stack which is conceptually similar. 
+
+I designed this blog as an API first / JavaScript framework app because that's generally how I think. I decided to handle the login/logout and registration pages
+as standard Laravel thanks to the built-in Laravel views, although the api routes exist and are tested.
 
 
 ## Setup
 
-I looked at the Valet and Homestead environment shortcuts but they didn't seem well suited for my setup.
+I looked at the Valet and Homestead environments but they weren't well suited for my setup. I would provide a Docker package but I don't want to make you go through more installation steps than necessary when you probably already have everything you need.
 
 You should be able to clone this repo and then, given you've got MySQL, php, composer and npm installed:
 
-'''
+```
 composer install
 php artisan migrate
 phpunit
 php artisan db:seed  #optional
 npm run dev
 php artisan serve
-'''
+```
 
-and then navigate to http://127.0.0.1:8000
+Navigate to http://127.0.0.1:8000
 
-if you've seeded the db, you'll see some random posts display newest to oldest by 'visible_at' date field. 
+If you've seeded the db, you'll see some random posts displayed newest to oldest by `visible_at` date field. 
 
 In hindsight, I shouldn't have messed around with dates because there are so many issues going between database to php to javascript and back,
-with timezones and formatting. As it is I know the dates are not handled correctly at this point.
+with timezones and formatting. As it is I know the dates are not handled correctly... 
  
 You'll need to register a user in order to create, edit and delete posts.
 

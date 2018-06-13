@@ -23,8 +23,7 @@ class PostsTest extends TestCase
 
         $this->json('POST', '/api/posts', $payload, $headers)
             ->assertStatus(201)
-            ->assertJson([
-                'id' => 1, 
+            ->assertJsonFragment([
                 'title' => 'Lorem', 
                 'body' => 'Ipsum',
                 'visible_at' => '2018-01-01 11:20:00',
@@ -50,8 +49,7 @@ class PostsTest extends TestCase
 
         $response = $this->json('PUT', '/api/posts/' . $post->slug, $payload, $headers)
             ->assertStatus(200)
-            ->assertJson([ 
-                'id' => 1, 
+            ->assertJsonFragment([ 
                 'title' => 'Lorem', 
                 'body' => 'Ipsum',
                 'visible_at' => '2018-01-01 11:20:00',
