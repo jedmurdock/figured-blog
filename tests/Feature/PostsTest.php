@@ -93,20 +93,29 @@ class PostsTest extends TestCase
 
         $response = $this->json('GET', '/api/posts', [], $headers)
             ->assertStatus(200)
-            ->assertJson([
-                [ 
-                    'title' => 'First Post', 
-                    'body' => 'First Body',
-                    'visible_at' => '2018-01-01 11:20:00',
-                ],
-                [ 
-                    'title' => 'Second Post', 
-                    'body' => 'Second Body',
-                    'visible_at' => '2018-02-01 11:21:00',
-                ]
-            ])
             ->assertJsonStructure([
-                '*' => ['id', 'body', 'title', 'created_at', 'updated_at', 'visible_at', 'slug'],
+                'current_page',
+                'data' => [
+                    '*' => [
+                        'id',
+                        'body', 
+                        'title', 
+                        'created_at', 
+                        'updated_at', 
+                        'visible_at', 
+                        'slug'
+                        ]
+                    ],
+                'first_page_url',
+                'from',
+                'last_page',
+                'last_page_url',
+                'next_page_url',
+                'path',
+                'per_page',
+                'prev_page_url',
+                'to',
+                'total'
             ]);
     }
 }

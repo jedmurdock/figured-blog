@@ -5,6 +5,7 @@ namespace FiguredBlog\Http\Controllers;
 use FiguredBlog\Post;
 use Illuminate\Http\Request;
 
+
 class PostController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        $posts = Post::orderBy('visible_at', 'desc')->where('visible_at', '<=', date('Y-m-d H:i:s'))->paginate(5);
+        return $posts;
     }
 
     /**
@@ -24,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        
+        return view('posts.edit');
     }
 
     /**
@@ -58,7 +60,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit',['post'=>$post]);
     }
 
     /**

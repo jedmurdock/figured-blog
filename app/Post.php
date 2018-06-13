@@ -11,6 +11,9 @@ class Post extends Model
         parent::boot();
 
         static::saving(function ($model) {
+            if ($model->visible_at ===  null){
+                $model->visible_at = date('Y-m-d H:i:s');
+            }
             $model->slug = str_slug($model->title . $model->id);
         });
     }

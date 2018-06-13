@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -74,8 +74,14 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-        $user->makeApiToken();
 
-        return response()->json(['data' => $user->toArray()], 201);
+        $user->makeApiToken();
+        
+        if($request->expectsJson()) {
+            return response()->json(['data' => $user->toArray()], 201);
+        } else {
+            return redirect('/');
+        }
+        
     }
 }

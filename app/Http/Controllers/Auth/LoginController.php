@@ -12,21 +12,9 @@ class LoginController extends Controller
     |--------------------------------------------------------------------------
     | Login Controller
     |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
     */
 
     use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -41,7 +29,7 @@ class LoginController extends Controller
     /**
      * Login via API, generates and saves API token
      */
-    public function login(Request $request)
+    public function api_login(Request $request)
     {
         $this->validateLogin($request);
 
@@ -54,13 +42,24 @@ class LoginController extends Controller
             ]);
         }
 
+        return response()->json(['error' => 'login failure']);
+    }
+
+    public function login(Request $request)
+    {
+        $response = $this->api_login($request);
+
+        if (json_decode($response)['data']['id']) {
+            return redirect('/');
+        }
+
         return $this->sendFailedLoginResponse($request);
     }
 
     /**
      * Logout via API, removes user's API token
      */
-    public function logout(Request $request)
+    public function api_logout(Request $request)
     {
         $user = \Auth::guard('api')->user();
 
@@ -68,7 +67,16 @@ class LoginController extends Controller
             $user->api_token = null;
             $user->save();
         }
+        $this->guard()->logout();
 
         return response()->json(['data' => 'User logged out'], 200);
+    }
+
+    public function logout(Request $request)
+    {
+        $this->api_logout($request);
+        $request->session()->invalidate();
+
+        return redirect('/');
     }
 }
