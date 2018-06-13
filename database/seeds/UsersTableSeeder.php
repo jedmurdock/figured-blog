@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use \App\User;
+use \FiguredBlog\User;
 
 class UsersTableSeeder extends Seeder
 {

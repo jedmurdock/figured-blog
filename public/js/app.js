@@ -13976,14 +13976,13 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(50);
+module.exports = __webpack_require__(51);
 
 
 /***/ }),
 /* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
 
 __webpack_require__(14);
 
@@ -47343,6 +47342,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['userId', 'apiToken'],
@@ -47408,35 +47411,48 @@ var render = function() {
             _c(
               "div",
               { staticClass: "card-body" },
-              _vm._l(_vm.posts, function(post, index) {
-                return _c("post-view", {
-                  key: post.id,
-                  attrs: {
-                    id: post.id,
-                    title: post.title,
-                    body: post.body,
-                    slug: post.slug,
-                    "visible-at": post.visible_at,
-                    "user-id": _vm.userId
-                  },
-                  on: {
-                    "delete-post": function($event) {
-                      _vm.deletePost(post.slug, index)
+              [
+                _vm._l(_vm.posts, function(post, index) {
+                  return _c("post-view", {
+                    key: post.id,
+                    attrs: {
+                      id: post.id,
+                      title: post.title,
+                      body: post.body,
+                      slug: post.slug,
+                      "visible-at": post.visible_at,
+                      "user-id": _vm.userId
+                    },
+                    on: {
+                      "delete-post": function($event) {
+                        _vm.deletePost(post.slug, index)
+                      }
                     }
-                  }
-                })
-              })
+                  })
+                }),
+                _vm._v(" "),
+                _vm.posts.length === 0
+                  ? _c("div", [
+                      _vm._v(
+                        "\n                        No Posts Yet... \n                    "
+                      )
+                    ])
+                  : _vm._e()
+              ],
+              2
             ),
             _vm._v(" "),
-            _c("paginate", {
-              attrs: {
-                "page-count": _vm.pageCount,
-                "click-handler": _vm.fetch,
-                "prev-text": "Prev",
-                "next-text": "Next",
-                "container-class": "pagination"
-              }
-            })
+            _vm.pageCount > 1
+              ? _c("paginate", {
+                  attrs: {
+                    "page-count": _vm.pageCount,
+                    "click-handler": _vm.fetch,
+                    "prev-text": "Prev",
+                    "next-text": "Next",
+                    "container-class": "pagination"
+                  }
+                })
+              : _vm._e()
           ],
           1
         )
@@ -47590,7 +47606,7 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(48)
 /* template */
-var __vue_template__ = __webpack_require__(49)
+var __vue_template__ = __webpack_require__(50)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47634,7 +47650,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuejs_datepicker__ = __webpack_require__(49);
 //
 //
 //
@@ -47678,7 +47694,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       edit_id: this.id,
       edit_title: this.title,
       edit_body: this.body,
-      edit_visible_at: this.visibleAt,
+      edit_visible_at: new Date(this.visibleAt),
       state_saved: false
     };
   },
@@ -47731,157 +47747,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.edit_id
-      ? _c("div", [_c("h4", [_vm._v("Edit Post")])])
-      : _c("div", [_c("h4", [_vm._v("New Post")])]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticStyle: { "margin-top": "2em", "margin-bottom": "2em" } },
-      [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("Title")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.edit_title,
-                expression: "edit_title"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { placeholder: "title" },
-            domProps: { value: _vm.edit_title },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.edit_title = $event.target.value
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "form-group" },
-          [
-            _c("label", [_vm._v("Visible On Date")]),
-            _vm._v(" "),
-            _c("datepicker", {
-              staticClass: "form-control",
-              attrs: { "bootstrap-styling": "" },
-              model: {
-                value: _vm.edit_visible_at,
-                callback: function($$v) {
-                  _vm.edit_visible_at = $$v
-                },
-                expression: "edit_visible_at"
-              }
-            })
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", [_vm._v("Post Body")]),
-          _vm._v(" "),
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.edit_body,
-                expression: "edit_body"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { rows: "8", cols: "55", placeholder: "body" },
-            domProps: { value: _vm.edit_body },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.edit_body = $event.target.value
-              }
-            }
-          })
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "btn btn-success btn-sm", on: { click: _vm.save } },
-      [_vm._v("Save")]
-    ),
-    _vm._v(" "),
-    _vm.state_saved
-      ? _c(
-          "div",
-          {
-            staticClass: "alert alert-success alert-dismissible fade show",
-            staticStyle: { "margin-top": "2em" },
-            attrs: { role: "alert" }
-          },
-          [
-            _c("strong", [_vm._v("Post Saved!")]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "close",
-                attrs: {
-                  type: "button",
-                  "data-dismiss": "alert",
-                  "aria-label": "Close"
-                },
-                on: {
-                  click: function($event) {
-                    _vm.state_saved = false
-                  }
-                }
-              },
-              [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-            )
-          ]
-        )
-      : _vm._e()
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-25be2f01", module.exports)
-  }
-}
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49180,6 +49045,153 @@ var Datepicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
 
 /* harmony default export */ __webpack_exports__["a"] = (Datepicker);
 
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.edit_id
+      ? _c("div", [_c("h4", [_vm._v("Edit Post")])])
+      : _c("div", [_c("h4", [_vm._v("New Post")])]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticStyle: { "margin-top": "2em", "margin-bottom": "2em" } },
+      [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Title")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.edit_title,
+                expression: "edit_title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { placeholder: "title" },
+            domProps: { value: _vm.edit_title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.edit_title = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group" },
+          [
+            _c("label", [_vm._v("Visible On Date")]),
+            _vm._v(" "),
+            _c("datepicker", {
+              staticClass: "form-control",
+              attrs: { "bootstrap-styling": "" },
+              model: {
+                value: _vm.edit_visible_at,
+                callback: function($$v) {
+                  _vm.edit_visible_at = $$v
+                },
+                expression: "edit_visible_at"
+              }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", [_vm._v("Post Body")]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.edit_body,
+                expression: "edit_body"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { rows: "8", cols: "55", placeholder: "body" },
+            domProps: { value: _vm.edit_body },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.edit_body = $event.target.value
+              }
+            }
+          })
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "btn btn-success btn-sm", on: { click: _vm.save } },
+      [_vm._v("Save")]
+    ),
+    _vm._v(" "),
+    _vm.state_saved
+      ? _c(
+          "div",
+          {
+            staticClass: "alert alert-success alert-dismissible fade show",
+            staticStyle: { "margin-top": "2em" },
+            attrs: { role: "alert" }
+          },
+          [
+            _c("strong", [_vm._v("Post Saved!")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "close",
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "alert",
+                  "aria-label": "Close"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.state_saved = false
+                  }
+                }
+              },
+              [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+            )
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-25be2f01", module.exports)
+  }
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

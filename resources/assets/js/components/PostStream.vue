@@ -17,15 +17,19 @@
                             v-on:delete-post="deletePost(post.slug,index)"
                             >
                         </post-view>
-                        
+                        <div v-if="posts.length === 0">
+                            No Posts Yet... 
+                        </div>
                     </div>
                     <paginate
+                        v-if="pageCount > 1"
                         :page-count="pageCount"
                         :click-handler="fetch"
                         :prev-text="'Prev'"
                         :next-text="'Next'"
                         :container-class="'pagination'">
                     </paginate>
+                    
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use \App\Post;
+use \FiguredBlog\Post;
 
 class PostsTableSeeder extends Seeder
 {
