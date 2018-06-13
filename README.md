@@ -2,8 +2,6 @@
 
 This is my first Laravel app and this is also my first attempt at Vue.js. 
 
-I'm sure I'm making all sorts of rookie mistakes on this project that given a month or two of best-practice guidance for these specific frameworks I could clean up. I have some professional experience with a Rails / React stack which is conceptually similar. 
-
 I designed this blog as an API first / JavaScript framework app because that's generally how I think. I decided to handle the login/logout and registration pages
 as standard Laravel thanks to the built-in Laravel views, although the api routes exist and are tested.
 
