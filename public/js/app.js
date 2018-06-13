@@ -47694,7 +47694,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       edit_id: this.id,
       edit_title: this.title,
       edit_body: this.body,
-      edit_visible_at: new Date(this.visibleAt),
+      edit_visible_at: this.visibleAt ? new Date(this.visibleAt) : new Date(),
       state_saved: false
     };
   },
